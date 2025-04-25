@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食品检测方法概述 - GB 标准（详细步骤）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply base font styles */
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Custom scrollbar for webkit browsers (optional enhancement) */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        html.dark ::-webkit-scrollbar-track { background: #2d3748; } /* dark:gray-700 */
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+        html.dark ::-webkit-scrollbar-thumb { background: #555; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        html.dark ::-webkit-scrollbar-thumb:hover { background: #777; }
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        /* Style for ordered list markers */
+        .list-decimal-styled li::marker {
+            color: #4b5563; /* gray-600 */
+            font-weight: 600;
+        }
+        html.dark .list-decimal-styled li::marker {
+            color: #d1d5db; /* dark:gray-300 */
+        }
+    </style>
+    <script>
+        // JavaScript for Dark/Light Mode Toggle
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            localStorage.setItem('theme', theme);
+        };
+        const toggleTheme = () => {
+            const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        };
+
+        // Apply theme on initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+            applyTheme(initialTheme); // Apply theme first
+
+            const themeToggleButton = document.getElementById('theme-toggle');
+            if(themeToggleButton) {
+                themeToggleButton.addEventListener('click', toggleTheme);
+            }
+            // Mermaid script loading and initialization removed
+        });
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+
+    <button id="theme-toggle" aria-label="Toggle dark mode" class="fixed bottom-5 right-5 z-50 p-3 bg-blue-500 dark:bg-yellow-400 text-white dark:text-gray-900 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-yellow-400 dark:focus:ring-offset-gray-900 transition-colors duration-300">
+        <i class="fas fa-sun block dark:hidden"></i>
+        <i class="fas fa-moon hidden dark:block"></i>
+    </button>
+
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-800 dark:to-indigo-900 text-white py-16 md:py-24 text-center shadow-md">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">食品检测方法概述</h1>
+            <p class="text-lg md:text-xl text-blue-100 dark:text-blue-200">基于中国国家标准 (GB) 的详细步骤</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-16 max-w-5xl mb-16"> <section id="gb4789-2" class="mb-16 p-6 md:p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-colors duration-300">
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6 border-l-4 border-blue-500 dark:border-blue-400 pl-4 text-gray-900 dark:text-white">
+                <i class="fas fa-microscope mr-3 text-blue-500 dark:text-blue-400"></i>GB 4789.2-2022: 菌落总数测定
+            </h2>
+            <p class="mb-6 text-gray-600 dark:text-gray-400">
+                本标准规定了测定食品中需氧菌总数的方法，是评价食品卫生状况的常用指标。菌落总数反映了食品在生产、加工、运输、储存过程中受微生物污染的程度。
+            </p>
+            <div class="space-y-6">
+                <h3 class="text-xl font-medium text-gray-800 dark:text-gray-100">详细操作步骤:</h3>
+                <ol class="list-decimal list-inside space-y-3 text-gray-700 dark:text-gray-300 list-decimal-styled pl-4">
+                    <li>
+                        <strong class="font-semibold">样品稀释:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>固体/半固体: 称取 25g 样品 + 225mL 稀释液 (磷酸盐缓冲液/生理盐水)，用均质器 (8000-10000 r/min) 均质 1-2 min 或拍击式均质器拍打 1-2 min，制成 1:10 稀释液。</li>
+                            <li>液体: 吸取 25mL 样品 + 225mL 稀释液，充分混匀 (可用带玻璃珠的锥形瓶或拍击式均质器)，制成 1:10 稀释液。</li>
+                            <li>用 1mL 无菌吸管吸取 1mL 的 1:10 稀释液，加入含 9mL 稀释液的试管中，振荡混匀，制成 1:100 稀释液。</li>
+                            <li>依次制备 10 倍系列稀释液，每次更换吸管。</li>
+                        </ul>
+                    </li>
+                    <li><strong class="font-semibold">接种:</strong> 根据样品污染情况，选择 1-3 个适宜稀释度 (液体可选原液)，每个稀释度吸取 1mL 样品匀液加入 2 个无菌培养皿中。同时做空白对照 (1mL 稀释液)。</li>
+                    <li><strong class="font-semibold">倾注培养基:</strong> 及时向每个培养皿中倾注 15-20mL 已冷却至 46-50°C 的平板计数琼脂培养基 (PCA)，旋转培养皿使样品与培养基混合均匀。</li>
+                    <li><strong class="font-semibold">培养:</strong> 待琼脂凝固后，将平板倒置，放入 36°C±1°C 恒温培养箱培养 48h±2h。水产品需在 30°C±1°C 培养 72h±3h。(若有蔓延菌落风险，可在凝固后覆盖一层薄层琼脂)。</li>
+                    <li>
+                        <strong class="font-semibold">菌落计数:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>选取菌落数在 30-300 CFU 之间、无蔓延菌落的平板进行计数。低于 30 CFU 记录具体数，高于 300 CFU 记为“多不可计 (TNTC)”。</li>
+                            <li>若有片状菌落，则该平板不宜采用；若片状不到一半且其余部分均匀，可计半皿乘以 2。</li>
+                            <li>链状生长按每条链计为一个菌落。</li>
+                        </ul>
+                    </li>
+                    <li><strong class="font-semibold">结果计算与报告:</strong> 根据标准提供的公式 (考虑一个或两个稀释度在计数范围内、全高于或全低于计数范围等情况) 计算菌落总数。按规定进行数值修约，以 CFU/g 或 CFU/mL 为单位报告。空白对照不得有菌落生长。</li>
+                </ol>
+                </div>
+        </section>
+
+        <section id="gb5009-9" class="mb-16 p-6 md:p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-colors duration-300">
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6 border-l-4 border-green-500 dark:border-green-400 pl-4 text-gray-900 dark:text-white">
+                <i class="fas fa-flask-vial mr-3 text-green-500 dark:text-green-400"></i>GB 5009.9-2023: 食品中淀粉的测定
+            </h2>
+            <p class="mb-6 text-gray-600 dark:text-gray-400">
+                本标准规定了测定食品中淀粉含量的方法，包括酶水解法、酸水解法和适用于肉制品的皂化-酸水解法。淀粉含量是食品营养成分和品质的重要指标。
+            </p>
+            <div class="space-y-6">
+                <h3 class="text-xl font-medium text-gray-800 dark:text-gray-100">详细操作步骤 (以第一法: 酶水解法为例):</h3>
+                 <ol class="list-decimal list-inside space-y-3 text-gray-700 dark:text-gray-300 list-decimal-styled pl-4">
+                     <li>
+                        <strong class="font-semibold">样品制备与预处理:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>取可食部分磨碎过 40 目筛，称取 2-5g 样品。</li>
+                            <li>置于滤纸漏斗中，用 50mL 石油醚或乙醚分次洗除脂肪。</li>
+                            <li>用 85% 乙醇溶液分次洗去可溶性糖，直至微糖检验 (α-萘酚法) 呈阴性。(对含麦芽糊精样品，先用 85% 乙醇洗，再用 40% 乙醇洗至阴性)。</li>
+                            <li>滤干乙醇，将残留物和滤纸用 50mL 水洗入烧杯。</li>
+                        </ul>
+                     </li>
+                     <li>
+                        <strong class="font-semibold">酶解:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>将烧杯置于沸水浴加热至糊化 (约 15 min)。</li>
+                            <li>冷却至 60°C 以下，加入 20mL α-淀粉酶溶液 (5g/L)。</li>
+                            <li>在 55-60°C 保温 1h，时时搅拌。</li>
+                            <li>取 1 滴加碘液检查，应不显蓝色 (若显蓝，需重新糊化、加酶、保温)。</li>
+                        </ul>
+                     </li>
+                     <li>
+                        <strong class="font-semibold">酸水解:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>将酶解液加热至沸，冷却后移入 250mL 容量瓶，用水定容、混匀、过滤 (弃初滤液)。</li>
+                            <li>准确吸取 50.00mL 滤液至 250mL 锥形瓶，加 5mL 盐酸 (1+1)。</li>
+                            <li>装上回流冷凝器，在沸水浴中回流 1h。</li>
+                     </ul>
+                     </li>
+                     <li>
+                        <strong class="font-semibold">中和与定容:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>冷却后加 2 滴甲基红指示液，用 NaOH 溶液 (200g/L) 中和至黄色刚出现。</li>
+                            <li>溶液转入 100mL 容量瓶，洗涤锥形瓶并入容量瓶，用水定容至刻度，混匀备用。</li>
+                        </ul>
+                     </li>
+                     <li>
+                        <strong class="font-semibold">滴定测定 (费林法):</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>标定碱性酒石酸铜溶液: 用已知浓度的葡萄糖标准溶液滴定一定体积的碱性酒石酸铜甲、乙混合液，记录消耗体积 V₀，计算其相当于葡萄糖的质量 m₁。</li>
+                            <li>试样预测: 用待测样液滴定相同体积的碱性酒石酸铜混合液至终点，估算消耗体积。</li>
+                            <li>试样测定: 精确滴定，记录平均消耗体积 V₁。</li>
+                            <li>(若浓度过低，可反滴定)。</li>
+                        </ul>
+                     </li>
+                     <li><strong class="font-semibold">计算与报告:</strong> 根据 m₁ 和 V₁ (或反滴定结果)，计算出样品中葡萄糖的质量 X₁ (或 X₂)，减去试剂空白值 X₀，再乘以换算系数 0.9，除以样品取样量，得到淀粉含量 (%)。</li>
+                 </ol>
+                 <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-4">注：第二法 (酸水解法) 和第三法 (皂化-酸水解法) 在预处理和水解步骤上有所不同，但最终都是测定水解产生的葡萄糖含量。详情请查阅标准原文。</p>
+                 </div>
+        </section>
+
+        <section id="gbt4789-3" class="p-6 md:p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-colors duration-300">
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6 border-l-4 border-red-500 dark:border-red-400 pl-4 text-gray-900 dark:text-white">
+                <i class="fas fa-bacteria mr-3 text-red-500 dark:text-red-400"></i>GB/T 4789.3-2003: 大肠菌群测定
+            </h2>
+            <p class="mb-6 text-gray-600 dark:text-gray-400">
+                本标准规定了使用最可能数法 (MPN) 测定食品中大肠菌群的方法。大肠菌群是常用的粪便污染指示菌，其检出情况可用于评价食品的卫生质量。
+            </p>
+            <div class="space-y-6">
+                <h3 class="text-xl font-medium text-gray-800 dark:text-gray-100">详细操作步骤 (MPN法):</h3>
+                 <ol class="list-decimal list-inside space-y-3 text-gray-700 dark:text-gray-300 list-decimal-styled pl-4">
+                     <li><strong class="font-semibold">样品稀释:</strong> 同菌落总数测定，制备 1:10 样品匀液，并进行系列 10 倍梯度稀释。</li>
+                     <li>
+                        <strong class="font-semibold">初步发酵试验 (推测性):</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>根据要求选择 3 个连续的适宜稀释度。</li>
+                            <li>每个稀释度接种 3 管乳糖胆盐 (LSTB) 发酵管 (接种量 ≥1mL 用双料，<1mL 用单料)。</li>
+                            <li>置于 36°C±1°C 培养箱培养 24h±2h。</li>
+                            <li>观察小倒管内是否产气。若所有管均不产气，报告大肠菌群阴性。</li>
+                        </ul>
+                     </li>
+                     <li>
+                        <strong class="font-semibold">分离培养 (证实性):</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>将所有产气的 LSTB 发酵管培养物，分别用接种环划线接种到伊红美蓝 (EMB) 琼脂平板上。</li>
+                            <li>置于 36°C±1°C 培养箱培养 18-24h。</li>
+                            <li>观察平板上是否有典型的可疑大肠菌群菌落 (如深紫色带金属光泽或粉红色)。</li>
+                        </ul>
+                     </li>
+                     <li>
+                        <strong class="font-semibold">证实试验:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>从 EMB 平板上挑取 1-2 个可疑菌落。</li>
+                            <li>进行革兰氏染色：应为革兰氏阴性、无芽胞杆菌。</li>
+                            <li>同时接种到乳糖 (Lactose) 发酵管中。</li>
+                            <li>置于 36°C±1°C 培养箱培养 24h±2h，观察是否产气。</li>
+                            <li>若染色符合且乳糖管产气，则证实为大肠菌群阳性。</li>
+                        </ul>
+                     </li>
+                     <li><strong class="font-semibold">结果报告:</strong> 根据每个稀释度被证实为大肠菌群阳性的管数 (如 3-2-1)，查阅 MPN 检索表，报告每 100g (mL) 样品中大肠菌群的最可能数。</li>
+                     <li>
+                        <strong class="font-semibold">(可选) 粪大肠菌群测定:</strong>
+                        <ul class="list-disc list-inside mt-2 pl-6 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                            <li>将初步发酵 (LSTB) 产气的培养物转接到 EC 肉汤管中。</li>
+                            <li>置于 44.5°C±0.2°C 水浴培养 24h±2h。</li>
+                            <li>产气的 EC 肉汤管再转种 EMB 平板，36°C±1°C 培养 18-24h。</li>
+                            <li>平板上出现典型菌落者，证实为粪大肠菌群阳性。根据阳性管数查 MPN 表报告。</li>
+                        </ul>
+                     </li>
+                 </ol>
+                 </div>
+        </section>
+
+    </main>
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+# Node (in case you use npm tools like vite or parcel)
+node_modules/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# Environment files (if any)
+.env
