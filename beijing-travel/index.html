@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北京四日畅游：文化与现代探索之旅</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /*
+         * Enhanced Design Rationale:
+         * Visual Style: "Modern Editorial Travel Guide"
+         * - Refined Minimalism: Clean, spacious, focusing on content.
+         * - Sophisticated Colors: A palette that feels premium and trustworthy.
+         *   - Blues for headers/structure, Oranges for day highlights/callouts, subtle Slates for backgrounds.
+         * - Enhanced Typography: Using Noto Sans SC with varied weights for clear hierarchy and readability.
+         * - Card Design: Softer shadows, subtle borders, and improved spacing for a polished look.
+         * - Iconography: Used purposefully for navigation aids (map links) and section identification.
+         * - Hero Section: More impactful with a larger title and inviting subtitle.
+         * - Map Integration: Added direct links to Google Maps for key locations, improving usability.
+         * - Timeline Itinerary: Visual cues for daily progression.
+         * - Overall Feel: Aims for a balance of elegance, practicality, and inspiration for a travel itinerary.
+         */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hero-section {
+            /* Consider adding a subtle, high-quality, blurred background image related to Beijing here if desired */
+            /* e.g., background-image: linear-gradient(to bottom, rgba(230, 240, 255, 0.6), rgba(245, 245, 245, 0.2)), url('path-to-beijing-image.jpg'); */
+        }
+        .content-card {
+            @apply bg-white dark:bg-slate-800 rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-700/50 transition-all duration-300 hover:shadow-2xl;
+        }
+        .section-heading {
+            @apply text-3xl sm:text-4xl font-bold mb-3 text-slate-800 dark:text-slate-100;
+        }
+        .section-subheading {
+            @apply text-lg text-slate-600 dark:text-slate-400 mb-8;
+        }
+        .day-block-wrapper { /* Wrapper for card content to apply timeline effect */
+            @apply relative pl-8 sm:pl-12 py-6 border-l-4 border-orange-500 dark:border-orange-400;
+        }
+        .day-block-wrapper::before { /* Timeline dot */
+            content: '';
+            @apply absolute left-[-0.62rem] top-6 w-5 h-5 bg-orange-500 dark:bg-orange-400 rounded-full border-4 border-white dark:border-slate-800 ring-1 ring-orange-500 dark:ring-orange-400;
+            /* Adjusted left value and added ring for better visibility on card background */
+        }
+        .day-title {
+            @apply text-2xl font-semibold mb-1 text-orange-600 dark:text-orange-400;
+        }
+        .day-subtitle {
+            @apply text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium;
+        }
+        .location-link {
+            @apply text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline decoration-dotted underline-offset-2 transition-colors font-medium;
+        }
+        .location-link i {
+            @apply text-xs opacity-80 group-hover:opacity-100; /* Made icon slightly smaller */
+        }
+        .important-note {
+            @apply text-sm text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-900/40 p-3 rounded-lg border border-red-200 dark:border-red-700/60 mt-2 italic leading-normal;
+        }
+        .tip-item {
+            @apply flex items-start space-x-3 p-4 bg-slate-50 dark:bg-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-700/50;
+        }
+        .tip-item i {
+            @apply text-blue-500 dark:text-blue-400 text-xl mt-1 flex-shrink-0 w-6 text-center;
+        }
+
+        /* Custom scrollbar - subtle enhancement */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; /* slate-200 */ border-radius: 10px; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; /* slate-800 */ }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; /* slate-400 */ border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; /* slate-600 */ }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; /* slate-500 */ }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; /* slate-500 */ }
+
+        .transition-all-300 {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 transition-all-300 leading-relaxed">
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" type="button" class="fixed top-4 right-4 z-50 p-3 text-sm text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 border border-slate-200 dark:border-slate-700 transition-all">
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.707 10.607a1 1 0 011.414-1.414l-.707-.707a1 1 0 11-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+    </button>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
+
+        <!-- Hero Section -->
+        <header class="hero-section text-center pt-12 pb-16 sm:pt-16 sm:pb-20">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-blue-700 dark:text-blue-400 mb-4 tracking-tight">北京四日畅游</h1>
+            <p class="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 font-light">为您精心策划的文化底蕴与现代活力探索之旅</p>
+        </header>
+
+        <!-- Main Content Wrapper -->
+        <main class="space-y-12 sm:space-y-16">
+
+            <!-- Accommodation Section -->
+            <section id="accommodation">
+                <div class="content-card p-6 sm:p-8">
+                    <h2 class="section-heading"><i class="fa-solid fa-hotel mr-3 text-blue-500 dark:text-blue-400 opacity-75"></i>住宿建议</h2>
+                    <p class="section-subheading">为了方便您的出行，我们推荐以下地铁站附近的住宿区域：</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-5 bg-slate-50 dark:bg-slate-700/50 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-1">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Qianmen+Station+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                    前门站 (Qianmen Station) <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                </a>
+                            </h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">地铁2号线、8号线</p>
+                            <p>紧邻天安门广场、故宫、国家博物馆、东交民巷，地理位置核心，观光极为便利。</p>
+                        </div>
+                        <div class="p-5 bg-slate-50 dark:bg-slate-700/50 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-1">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Chongwenmen+Station+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                    崇文门站 (Chongwenmen Station) <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                </a>
+                            </h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">地铁2号线、5号线</p>
+                            <p>市中心重要交通枢纽，方便前往各处景点，周边商业设施齐全，生活便捷。</p>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-sm text-slate-500 dark:text-slate-400">
+                        <i class="fa-solid fa-circle-info mr-1 text-blue-500"></i> 这两个区域均能让您轻松搭乘地铁，高效游览北京各大景点。
+                    </p>
+                </div>
+            </section>
+
+            <!-- Itinerary Section -->
+            <section id="itinerary">
+                <div class="text-center mb-10">
+                    <h2 class="section-heading"><i class="fa-solid fa-route mr-3 text-blue-500 dark:text-blue-400 opacity-75"></i>每日行程建议</h2>
+                    <p class="section-subheading">请根据您的抵达时间、体力及景点开放情况灵活调整。建议提前查询并预约热门景点门票。</p>
+                </div>
+
+                <div class="space-y-10">
+                    <!-- Day 1 Card -->
+                    <article class="content-card">
+                        <div class="day-block-wrapper">
+                            <h3 class="day-title">第一天</h3>
+                            <p class="day-subtitle">天安门广场及周边文化探索</p>
+                            <ul class="space-y-5">
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">上午：</strong>参观
+                                    <a href="https://www.google.com/maps/search/?api=1&query=National+Museum+of+China+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        中国国家博物馆 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    （地铁：天安门东站 C/D口）。馆藏宏富，建议预留3-4小时。
+                                    <p class="important-note"><i class="fa-regular fa-clock mr-1"></i>开放参考：周二至周日 09:00–16:30 (周一闭馆)。</p>
+                                </li>
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">下午：</strong>步行游览
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Dong+Jiao+Min+Xiang+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        东交民巷 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    ，感受这条历史街区的独特风貌。
+                                </li>
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">傍晚：</strong>于
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Tiananmen+Square+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        天安门广场 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    散步，远观周边建筑。之后可逛前门大街。
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Day 2 Card -->
+                    <article class="content-card">
+                        <div class="day-block-wrapper">
+                            <h3 class="day-title">第二天</h3>
+                            <p class="day-subtitle">皇家宫殿与园林景致</p>
+                            <ul class="space-y-5">
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">全天：</strong>游览
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Forbidden+City+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        故宫博物院 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    （地铁：天安门东/西站）。规模宏大，建议由南向北参观，预留4-6小时。
+                                    <p class="important-note"><i class="fa-regular fa-clock mr-1"></i>开放参考：周二至周日 08:30–16:30 (周一闭馆)。<i class="fa-solid fa-ticket ml-2 mr-1"></i>务必提前在线预订门票。</p>
+                                </li>
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">傍晚 (可选)：</strong>若时间充裕且天气良好，可前往对面的
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Jingshan+Park+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        景山公园 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    ，登上万春亭俯瞰故宫全景及北京中轴线。
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Day 3 Card -->
+                     <article class="content-card">
+                        <div class="day-block-wrapper">
+                            <h3 class="day-title">第三天</h3>
+                            <p class="day-subtitle">皇家园林遗址与奥运记忆</p>
+                            <ul class="space-y-5">
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">上午至下午：</strong>前往
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Yuanmingyuan+Park+Old+Summer+Palace+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        圆明园遗址公园 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    （地铁4号线圆明园站B口）。主要参观西洋楼遗址等，建议游玩3-4小时。
+                                    <p class="important-note"><i class="fa-regular fa-clock mr-1"></i>开放参考：每日 07:00–17:00。</p>
+                                </li>
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">傍晚：</strong>前往奥林匹克公园，参观
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Beijing+National+Stadium+Bird's+Nest" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        国家体育场 (鸟巢) <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    及水立方等奥运场馆外观（地铁：奥林匹克公园站/奥体中心站）。夜晚灯光效果更佳。
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Day 4 Card -->
+                    <article class="content-card">
+                        <div class="day-block-wrapper">
+                            <h3 class="day-title">第四天</h3>
+                            <p class="day-subtitle">祭祀文化与现代艺术碰撞</p>
+                            <ul class="space-y-5">
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">上午：</strong>游览
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Ditan+Park+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        地坛公园 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    （地铁2/5号线雍和宫站A口）。明清皇帝祭地之所。时间充裕可一并参观旁边的
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Lama+Temple+Yonghegong+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        雍和宫 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>。
+                                </li>
+                                <li>
+                                    <strong class="text-slate-700 dark:text-slate-200">下午：</strong>前往
+                                    <a href="https://www.google.com/maps/search/?api=1&query=798+Art+Zone+Beijing" target="_blank" rel="noopener noreferrer" class="location-link group">
+                                        798艺术区 <i class="fa-solid fa-map-location-dot ml-1"></i>
+                                    </a>
+                                    （地铁14号线望京南/将台站后换乘）。著名当代艺术区，众多画廊与特色小店，适合艺术摄影爱好者，预留3-4小时。
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Travel Tips Section -->
+            <section id="tips">
+                 <div class="content-card p-6 sm:p-8">
+                    <h2 class="section-heading"><i class="fa-solid fa-circle-exclamation mr-3 text-blue-500 dark:text-blue-400 opacity-75"></i>出行小贴士</h2>
+                    <p class="section-subheading">让您的旅程更顺畅的一些实用建议：</p>
+                    <div class="space-y-5">
+                        <div class="tip-item">
+                            <i class="fa-solid fa-subway"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-100">交通便捷</h4>
+                                <p>北京地铁网络发达，是游览市区景点的首选交通方式。建议办理一张“一卡通”或使用手机APP扫码乘车。</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-ticket-alt"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-100">门票预订</h4>
+                                <p>热门景点如故宫、国家博物馆等建议提前通过官方渠道预约门票，尤其是在旅游旺季。</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-100">关注开放时间</h4>
+                                <p>出行前务必再次确认各景点的最新开放时间和闭馆日（特别是周一）。</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-shoe-prints"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 dark:text-slate-100">舒适穿着</h4>
+                                <p>北京景点普遍较大，步行较多，请务必穿着舒适的鞋子和衣物。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-10 mt-12 sm:mt-16 border-t border-slate-200 dark:border-slate-700/50">
+            <p class="text-slate-500 dark:text-slate-400">© <span id="currentYear"></span> 北京行程规划. 祝您旅途愉快！</p>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">精心设计，为您呈现更佳旅行体验</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // JavaScript for Theme Toggle and Current Year
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const currentYearSpan = document.getElementById('currentYear');
+
+        // Function to set the theme
+        function setTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.add('hidden');
+                themeToggleLightIcon.classList.remove('hidden');
+                localStorage.setItem('color-theme', 'light');
+            }
+        }
+
+        // Check initial theme preference
+        let isDarkMode;
+        if (localStorage.getItem('color-theme')) {
+            isDarkMode = localStorage.getItem('color-theme') === 'dark';
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            isDarkMode = true;
+        } else {
+            isDarkMode = false; // Default to light
+        }
+        setTheme(isDarkMode);
+
+        // Listener for theme toggle button
+        themeToggleButton.addEventListener('click', () => {
+            const isCurrentlyDark = document.documentElement.classList.contains('dark');
+            setTheme(!isCurrentlyDark);
+        });
+        
+        // Listener for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // Only update if no theme explicitly set by user via toggle
+                if (!localStorage.getItem('color-theme')) {
+                     setTheme(event.matches);
+                }
+            });
+        }
+
+        // Set current year in footer
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+    </script>
+</body>
+</html>
