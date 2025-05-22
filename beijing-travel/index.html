@@ -1,93 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>北京四日畅游：文化与现代探索之旅</title>
+    <title>北京四日畅游：文化与现代探索之旅（含地图）</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- 
+        ********************************************************************
+        ** 重要：请将 YOUR_AMAP_KEY 替换为您自己的高德地图JS API Key! **
+        ********************************************************************
+    -->
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=__GD_AMAP_KEY__"></script>
+    
     <style>
-        /*
-         * Enhanced Design Rationale:
-         * Visual Style: "Modern Editorial Travel Guide"
-         * - Refined Minimalism: Clean, spacious, focusing on content.
-         * - Sophisticated Colors: A palette that feels premium and trustworthy.
-         *   - Blues for headers/structure, Oranges for day highlights/callouts, subtle Slates for backgrounds.
-         * - Enhanced Typography: Using Noto Sans SC with varied weights for clear hierarchy and readability.
-         * - Card Design: Softer shadows, subtle borders, and improved spacing for a polished look.
-         * - Iconography: Used purposefully for navigation aids (map links) and section identification.
-         * - Hero Section: More impactful with a larger title and inviting subtitle.
-         * - Map Integration: Added direct links to Google Maps for key locations, improving usability.
-         * - Timeline Itinerary: Visual cues for daily progression.
-         * - Overall Feel: Aims for a balance of elegance, practicality, and inspiration for a travel itinerary.
-         */
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Design Rationale & Style (as before) */
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Noto Sans SC', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        .hero-section {
-            /* Consider adding a subtle, high-quality, blurred background image related to Beijing here if desired */
-            /* e.g., background-image: linear-gradient(to bottom, rgba(230, 240, 255, 0.6), rgba(245, 245, 245, 0.2)), url('path-to-beijing-image.jpg'); */
-        }
+        .hero-section {}
         .content-card {
             @apply bg-white dark:bg-slate-800 rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-700/50 transition-all duration-300 hover:shadow-2xl;
         }
-        .section-heading {
-            @apply text-3xl sm:text-4xl font-bold mb-3 text-slate-800 dark:text-slate-100;
-        }
-        .section-subheading {
-            @apply text-lg text-slate-600 dark:text-slate-400 mb-8;
-        }
-        .day-block-wrapper { /* Wrapper for card content to apply timeline effect */
-            @apply relative pl-8 sm:pl-12 py-6 border-l-4 border-orange-500 dark:border-orange-400;
-        }
-        .day-block-wrapper::before { /* Timeline dot */
+        .section-heading { @apply text-3xl sm:text-4xl font-bold mb-3 text-slate-800 dark:text-slate-100; }
+        .section-subheading { @apply text-lg text-slate-600 dark:text-slate-400 mb-8; }
+        .day-block-wrapper { @apply relative pl-8 sm:pl-12 py-6 border-l-4 border-orange-500 dark:border-orange-400; }
+        .day-block-wrapper::before {
             content: '';
             @apply absolute left-[-0.62rem] top-6 w-5 h-5 bg-orange-500 dark:bg-orange-400 rounded-full border-4 border-white dark:border-slate-800 ring-1 ring-orange-500 dark:ring-orange-400;
-            /* Adjusted left value and added ring for better visibility on card background */
         }
-        .day-title {
-            @apply text-2xl font-semibold mb-1 text-orange-600 dark:text-orange-400;
-        }
-        .day-subtitle {
-            @apply text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium;
-        }
-        .location-link {
-            @apply text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline decoration-dotted underline-offset-2 transition-colors font-medium;
-        }
-        .location-link i {
-            @apply text-xs opacity-80 group-hover:opacity-100; /* Made icon slightly smaller */
-        }
-        .important-note {
-            @apply text-sm text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-900/40 p-3 rounded-lg border border-red-200 dark:border-red-700/60 mt-2 italic leading-normal;
-        }
-        .tip-item {
-            @apply flex items-start space-x-3 p-4 bg-slate-50 dark:bg-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-700/50;
-        }
-        .tip-item i {
-            @apply text-blue-500 dark:text-blue-400 text-xl mt-1 flex-shrink-0 w-6 text-center;
-        }
+        .day-title { @apply text-2xl font-semibold mb-1 text-orange-600 dark:text-orange-400; }
+        .day-subtitle { @apply text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium; }
+        .location-link { @apply text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline decoration-dotted underline-offset-2 transition-colors font-medium; }
+        .location-link i { @apply text-xs opacity-80 group-hover:opacity-100; }
+        .important-note { @apply text-sm text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-900/40 p-3 rounded-lg border border-red-200 dark:border-red-700/60 mt-2 italic leading-normal; }
+        .tip-item { @apply flex items-start space-x-3 p-4 bg-slate-50 dark:bg-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-700/50; }
+        .tip-item i { @apply text-blue-500 dark:text-blue-400 text-xl mt-1 flex-shrink-0 w-6 text-center; }
 
-        /* Custom scrollbar - subtle enhancement */
         ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track { background: #e2e8f0; /* slate-200 */ border-radius: 10px; }
-        .dark ::-webkit-scrollbar-track { background: #1e293b; /* slate-800 */ }
-        ::-webkit-scrollbar-thumb { background: #94a3b8; /* slate-400 */ border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; /* slate-600 */ }
-        ::-webkit-scrollbar-thumb:hover { background: #64748b; /* slate-500 */ }
-        .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; /* slate-500 */ }
+        ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        .transition-all-300 { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
 
-        .transition-all-300 {
-            transition-property: all;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 300ms;
+        /* AMap specific styles for custom labels */
+        .amap-marker-label {
+            padding: 5px 8px !important;
+            background-color: white !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            font-size: 12px !important;
+            color: #333 !important;
+            white-space: nowrap !important;
+        }
+        .dark .amap-marker-label {
+            background-color: #374151 !important; /* gray-700 */
+            color: #e5e7eb !important; /* gray-200 */
+            border-color: #4b5563 !important; /* gray-600 */
         }
     </style>
 </head>
@@ -101,7 +82,7 @@
 
     <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
 
-        <!-- Hero Section -->
+        <!-- Hero Section (as before) -->
         <header class="hero-section text-center pt-12 pb-16 sm:pt-16 sm:pb-20">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-blue-700 dark:text-blue-400 mb-4 tracking-tight">北京四日畅游</h1>
             <p class="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 font-light">为您精心策划的文化底蕴与现代活力探索之旅</p>
@@ -110,7 +91,7 @@
         <!-- Main Content Wrapper -->
         <main class="space-y-12 sm:space-y-16">
 
-            <!-- Accommodation Section -->
+            <!-- Accommodation Section (as before) -->
             <section id="accommodation">
                 <div class="content-card p-6 sm:p-8">
                     <h2 class="section-heading"><i class="fa-solid fa-hotel mr-3 text-blue-500 dark:text-blue-400 opacity-75"></i>住宿建议</h2>
@@ -141,13 +122,12 @@
                 </div>
             </section>
 
-            <!-- Itinerary Section -->
+            <!-- Itinerary Section (as before) -->
             <section id="itinerary">
                 <div class="text-center mb-10">
                     <h2 class="section-heading"><i class="fa-solid fa-route mr-3 text-blue-500 dark:text-blue-400 opacity-75"></i>每日行程建议</h2>
                     <p class="section-subheading">请根据您的抵达时间、体力及景点开放情况灵活调整。建议提前查询并预约热门景点门票。</p>
                 </div>
-
                 <div class="space-y-10">
                     <!-- Day 1 Card -->
                     <article class="content-card">
@@ -181,7 +161,7 @@
                         </div>
                     </article>
 
-                    <!-- Day 2 Card -->
+                    <!-- Day 2 Card (as before) -->
                     <article class="content-card">
                         <div class="day-block-wrapper">
                             <h3 class="day-title">第二天</h3>
@@ -206,7 +186,7 @@
                         </div>
                     </article>
 
-                    <!-- Day 3 Card -->
+                    <!-- Day 3 Card (as before) -->
                      <article class="content-card">
                         <div class="day-block-wrapper">
                             <h3 class="day-title">第三天</h3>
@@ -231,7 +211,7 @@
                         </div>
                     </article>
 
-                    <!-- Day 4 Card -->
+                    <!-- Day 4 Card (as before) -->
                     <article class="content-card">
                         <div class="day-block-wrapper">
                             <h3 class="day-title">第四天</h3>
@@ -260,7 +240,23 @@
                 </div>
             </section>
 
-            <!-- Travel Tips Section -->
+            <!-- AMap Section -->
+            <section id="map-overview">
+                <div class="content-card p-6 sm:p-8">
+                    <h2 class="section-heading"><i class="fa-solid fa-map-marked-alt mr-3 text-blue-500 dark:text-blue-400 opacity-75"></i>景点分布概览</h2>
+                    <p class="section-subheading">在地图上查看本次行程中主要景点的地理位置。</p>
+                    
+                    <div id="amap-container" style="width: 100%; height: 450px;" class="rounded-lg overflow-hidden border border-slate-300 dark:border-slate-700 shadow-inner">
+                        <!-- Map will be rendered here by AMap script -->
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-4 text-center">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i> 高德地图
+                    </p>
+                </div>
+            </section>
+
+
+            <!-- Travel Tips Section (as before) -->
             <section id="tips">
                  <div class="content-card p-6 sm:p-8">
                     <h2 class="section-heading"><i class="fa-solid fa-circle-exclamation mr-3 text-blue-500 dark:text-blue-400 opacity-75"></i>出行小贴士</h2>
@@ -299,7 +295,7 @@
             </section>
         </main>
 
-        <!-- Footer -->
+        <!-- Footer (as before) -->
         <footer class="text-center py-10 mt-12 sm:mt-16 border-t border-slate-200 dark:border-slate-700/50">
             <p class="text-slate-500 dark:text-slate-400">© <span id="currentYear"></span> 北京行程规划. 祝您旅途愉快！</p>
             <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">精心设计，为您呈现更佳旅行体验</p>
@@ -308,13 +304,12 @@
     </div>
 
     <script>
-        // JavaScript for Theme Toggle and Current Year
+        // JavaScript for Theme Toggle and Current Year (as before)
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const themeToggleButton = document.getElementById('theme-toggle');
         const currentYearSpan = document.getElementById('currentYear');
 
-        // Function to set the theme
         function setTheme(isDark) {
             if (isDark) {
                 document.documentElement.classList.add('dark');
@@ -328,38 +323,92 @@
                 localStorage.setItem('color-theme', 'light');
             }
         }
-
-        // Check initial theme preference
         let isDarkMode;
         if (localStorage.getItem('color-theme')) {
             isDarkMode = localStorage.getItem('color-theme') === 'dark';
         } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             isDarkMode = true;
-        } else {
-            isDarkMode = false; // Default to light
-        }
+        } else { isDarkMode = false; }
         setTheme(isDarkMode);
-
-        // Listener for theme toggle button
         themeToggleButton.addEventListener('click', () => {
-            const isCurrentlyDark = document.documentElement.classList.contains('dark');
-            setTheme(!isCurrentlyDark);
+            setTheme(!document.documentElement.classList.contains('dark'));
         });
-        
-        // Listener for system theme changes
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-                // Only update if no theme explicitly set by user via toggle
-                if (!localStorage.getItem('color-theme')) {
-                     setTheme(event.matches);
-                }
+                if (!localStorage.getItem('color-theme')) { setTheme(event.matches); }
             });
         }
+        if (currentYearSpan) { currentYearSpan.textContent = new Date().getFullYear(); }
+    </script>
 
-        // Set current year in footer
-        if (currentYearSpan) {
-            currentYearSpan.textContent = new Date().getFullYear();
-        }
+    <script type="text/javascript">
+        // AMap Initialization
+        // IMPORTANT: Ensure 'YOUR_AMAP_KEY' in the <head> script tag is replaced.
+        document.addEventListener('DOMContentLoaded', function() {
+            const amapContainer = document.getElementById('amap-container');
+            if (typeof AMap !== 'undefined' && amapContainer) {
+                try {
+                    const map = new AMap.Map('amap-container', {
+                        zoom: 11, 
+                        center: [116.39, 39.95], // Beijing general center
+                        scrollWheel: false, // Disable scroll wheel zoom for better page scroll
+                        pitchEnable: false, // Disable pitch for a flatter map, if preferred
+                    });
+
+                    const POIS = [
+                        ["故宫博物院",        116.397155, 39.916345, "第二天"],
+                        ["中国国家博物馆",    116.403425, 39.904110, "第一天"],
+                        ["地坛公园",          116.417164, 39.953774, "第四天"],
+                        ["东交民巷",          116.414700, 39.904400, "第一天"],
+                        ["圆明园遗址公园",    116.292088, 40.010519, "第三天"],
+                        ["国家体育场（鸟巢）", 116.396535, 39.991004, "第三天"],
+                        ["798艺术区",         116.497643, 39.984335, "第四天"]
+                    ];
+
+                    POIS.forEach(([name, lng, lat, day]) => {
+                        const marker = new AMap.Marker({
+                            position: new AMap.LngLat(lng, lat), // Ensure LngLat object
+                            title: `${name} (${day})`,
+                            // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png', // Example default icon
+                            // offset: new AMap.Pixel(-13, -30) // Adjust if using custom icon
+                        });
+
+                        marker.setLabel({
+                            // content will be styled by CSS: .amap-marker-label
+                            // direction: 'top' // Default: bottom. For many markers, top might be better.
+                            // offset: new AMap.Pixel(0, -5) // Adjust offset if needed
+                        });
+                        // Set content for label after initialization to apply CSS correctly
+                        marker.setLabel({ content: name, direction: 'top' });
+                        
+                        map.add(marker);
+                    });
+
+                    // Add map controls
+                    AMap.plugin([
+                        'AMap.ToolBar',    // Zoom and pan controls
+                        'AMap.Scale',      // Scale bar
+                        // 'AMap.HawkEye', // Overview map, optional
+                        // 'AMap.MapType' // Map type switcher, optional
+                    ], function(){
+                        map.addControl(new AMap.ToolBar({position: 'LT'})); // LT: LeftTop
+                        map.addControl(new AMap.Scale());
+                    });
+
+                    // Fit map to show all markers (optional, can be good for overview)
+                    // map.setFitView(); // Uncomment to auto-zoom/center to fit all markers
+
+                } catch (e) {
+                    console.error("Error initializing AMap:", e);
+                    amapContainer.innerHTML = '<p style="text-align:center; padding: 20px; color: #999; background-color: #f0f0f0; border-radius: 8px;">高德地图加载失败。请检查API Key或网络连接。</p>';
+                }
+            } else {
+                console.warn("AMap library not loaded or amap-container not found. Map will not be initialized.");
+                if(amapContainer) {
+                    amapContainer.innerHTML = '<p style="text-align:center; padding: 20px; color: #999; background-color: #f0f0f0; border-radius: 8px;">高德地图API未加载。请确保API Key正确并在`<head>`中引入了高德地图脚本。</p>';
+                }
+            }
+        });
     </script>
 </body>
 </html>
